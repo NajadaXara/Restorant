@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Parent Menu -->
+        <menuitem
+            id="main_menu_Restorant" name="Restorant"
+            web_icon="restorant, static/description/restorant.png"/>
+        <!--View form Kamarier-->
+        <record id="view_kamarier_form" model="ir.ui.view">
+            <field name="name">kamarier.form</field>
+            <field name="model">restorant.kamarier</field>
+            <field name="arch" type="xml">
+                <form string="Kamarier">
+                        <group>
+                            <field name="name"/>
+                            <field name="emri"/>
+                            <field name="mbiemri"/>
+                            <field name="informacion"/>
+                        </group>
+                </form>
+            </field>
+        </record>
+        <!--View tree Kamarier-->
+        <record id="view_kamarier_tree" model="ir.ui.view">
+            <field name="name">kamarier.tree</field>
+            <field name="model">restorant.kamarier</field>
+            <field name="arch" type="xml">
+                <tree string="kamarier">
+                            <field name="name"/>
+                            <field name="emri"/>
+                            <field name="mbiemri"/>
+                            <field name="informacion"/>
+                </tree>
+            </field>
+        </record>
+        <!--View search Kamarier-->
+        <record id="view_kamarier_search" model="ir.ui.view">
+            <field name="name">kamarier.search</field>
+            <field name="model">restorant.kamarier</field>
+            <field name="arch" type="xml">
+                <search string="Kamarier">
+                            <field name="name"/>
+                            <field name="emri"/>
+                            <field name="mbiemri"/>
+                            <field name="informacion"/>
+                </search>
+            </field>
+        </record>
+        <!--Action window Kamarier-->
+        <record id="open_view_kamarier_tree" model="ir.actions.act_window">
+            <field name="name">Kamarier</field>
+            <field name="res_model">restorant.kamarier</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_kamarier_tree"/>
+            <field name="search_view_id" ref="view_kamarier_search"/>
+        </record>
+        <!--Menu item Kamarier-->
+        <menuitem
+            id="menu_open_view_kamarier"
+            action="open_view_kamarier_tree"
+            parent="main_menu_Restorant"
+            sequence="1"/>
+        <!--View form Menu-->
+        <record id="view_menu_form" model="ir.ui.view">
+            <field name="name">menu.form</field>
+            <field name="model">restorant.menu</field>
+            <field name="arch" type="xml">
+                <form string="Menu">
+                        <group>
+                            <field name="name"/>
+                            <field name="perberes"/>
+                            <field name="informacion"/>
+                            <field name="cmimi"/>
+                            <field name="menu_dite"/>
+                        </group>
+                </form>
+            </field>
+        </record>
+        <!--View tree Menu-->
+        <record id="view_menu_tree" model="ir.ui.view">
+            <field name="name">menu.tree</field>
+            <field name="model">restorant.menu</field>
+            <field name="arch" type="xml">
+                <tree string="Menu">
+                            <field name="name"/>
+                            <field name="perberes"/>
+                            <field name="informacion"/>
+                            <field name="cmimi"/>
+                            <field name="menu_dite"/>
+                </tree>
+            </field>
+        </record>
+        <!--View search Menu-->
+        <record id="view_menu_search" model="ir.ui.view">
+            <field name="name">menu.search</field>
+            <field name="model">restorant.menu</field>
+            <field name="arch" type="xml">
+                <search string="Menu">
+                            <field name="name"/>
+                            <field name="perberes"/>
+                            <field name="informacion"/>
+                            <field name="cmimi"/>
+                            <field name="menu_dite"/>
+                </search>
+            </field>
+        </record>
+        <!--Action window Menu-->
+        <record id="open_view_menu_tree" model="ir.actions.act_window">
+            <field name="name">Menu</field>
+            <field name="res_model">restorant.menu</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_menu_tree"/>
+            <field name="search_view_id" ref="view_menu_search"/>
+        </record>
+        <!--Menu Item Menu-->
+        <menuitem
+            id="menu_open_view_menu"
+            action="open_view_menu_tree"
+            parent="main_menu_Restorant"
+            sequence="2"/>
+        <!--View Kanban Tavolina-->
+
+        <record id="view_tavolina_kanban" model="ir.ui.view">
+            <field name="name">tavolina.kanban</field>
+            <field name="model">restorant.tavolina</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban class="o_hr_employee_kanban">
+                    <templates>
+                        <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            Numri i tavolines: <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li id="last_login"/>
+                                    <li>Id e Kamarierit: <field name="id_kamarier"/></li>
+                                    <li>Statusi: <field name="state"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!--View form Tavolina-->
+        <record id="view_tavolina_form" model="ir.ui.view">
+            <field name="name">tavoilina.form</field>
+            <field name="model">restorant.tavolina</field>
+            <field name="arch" type="xml">
+                <form string="Tavolina">
+                        <group>
+                            <field name="name"/>
+                            <field name="id_kamarier"/>
+                            <field name="state"/>
+                            <button name="liro" string="Liro/Paguar" type="object"/>
+                        </group>
+                </form>
+            </field>
+        </record>
+        <!--View tree Tavolina-->
+        <record id="view_tavolina_tree" model="ir.ui.view">
+            <field name="name">tavolina.tree</field>
+            <field name="model">restorant.tavolina</field>
+            <field name="arch" type="xml">
+                <tree string="Tavolina">
+                            <field name="name"/>
+                            <field name="id_kamarier"/>
+                            <field name="state"/>
+                            <!--<button name="order" string="E Zene" type="object" attrs="{'invisible':[('state','=','porositur')]}"/>-->
+                            <button name="liro" string="Liro/Paguar" type="object"/>
+                            <!--<button name="reserved" string="E Rezervuar" type="object" attrs="{'invisible':[('state','=','rezervuar')]}"/>-->
+                </tree>
+            </field>
+        </record>
+        <!--View search Tavolina-->
+        <record id="view_tavolina_search" model="ir.ui.view">
+            <field name="name">tavolina.search</field>
+            <field name="model">restorant.tavolina</field>
+            <field name="arch" type="xml">
+                <search string="Tavolina">
+                            <field name="name"/>
+                            <field name="id_kamarier"/>
+                            <field name="state"/>
+                </search>
+            </field>
+        </record>
+        <!--Action window Tavolina-->
+        <record id="open_view_tavolina_tree" model="ir.actions.act_window">
+            <field name="name">Tavolina</field>
+            <field name="res_model">restorant.tavolina</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="view_tavolina_kanban"/>
+            <field name="search_view_id" ref="view_tavolina_search"/>
+        </record>
+        <!--Menu item Tavolina-->
+        <menuitem
+            id="menu_open_view_tavolina"
+            action="open_view_tavolina_tree"
+            parent="main_menu_Restorant"
+            sequence="3"/>
+        <!--View form Porosi-->
+        <record id="view_porosi_form" model="ir.ui.view">
+            <field name="name">porosi.form</field>
+            <field name="model">restorant.porosi</field>
+            <field name="arch" type="xml">
+                <form string="Porosi">
+                        <group>
+                            <field name="name"/>
+                            <field name="tavolina_id" domain="[('state','=','perfunduar')]"/>
+                            <field name="menu_ids" domain="[('menu_dite','!=',False)]"/>
+                            <field name="cmimi_total"/>
+                            <field name="status" widget="selection"/>
+                            <field name="data"/>
+                        </group>
+                </form>
+            </field>
+        </record>
+        <!--View tree Porosi-->
+        <record id="view_porosi_tree" model="ir.ui.view">
+            <field name="name">porosi.tree</field>
+            <field name="model">restorant.porosi</field>
+            <field name="arch" type="xml">
+                <tree string="Porosi">
+                            <field name="name"/>
+                            <field name="tavolina_id"/>
+                            <field name="menu_ids"/>
+                            <field name="cmimi_total"/>
+                            <field name="status"/>
+                            <field name="data"/>
+                            <button name="merr" string="Merre" type="object" attrs="{'invisible':['|','|',('status','=','servirur'),('status','=','pritje'),('status','=','perfunduar')]}"/>
+                            <button name="servir" string="Servir" type="object" attrs="{'invisible':['|','|',('status','=','servirur'),('status','=','krijuar'),('status','=','perfunduar')]}"/>
+                </tree>
+            </field>
+        </record>
+        <!--View search Porosi-->
+        <record id="view_porosi_search" model="ir.ui.view">
+            <field name="name">porosi.search</field>
+            <field name="model">restorant.porosi</field>
+            <field name="arch" type="xml">
+                <search string="Porosi">
+                            <field name="name"/>
+                            <field name="tavolina_id"/>
+                            <field name="menu_ids"/>
+                            <!--<field name="cmimi_total"/>-->
+                            <field name="status"/>
+                            <field name="data"/>
+                </search>
+            </field>
+        </record>
+        <!--Action window Porosi-->
+        <record id="open_view_porosi_tree" model="ir.actions.act_window">
+            <field name="name">Porosi</field>
+            <field name="res_model">restorant.porosi</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_porosi_tree"/>
+            <field name="search_view_id" ref="view_porosi_search"/>
+        </record>
+        <!--Menu item Porosi-->
+        <menuitem
+            id="menu_open_view_porosi"
+            action="open_view_porosi_tree"
+            parent="main_menu_Restorant"
+            sequence="4"/>
+    </data>
+</odoo>
