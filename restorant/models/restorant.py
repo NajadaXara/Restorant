@@ -34,13 +34,21 @@ class Tavolina(models.Model):
 
     name = fields.Char(string="Numri Tavolines")
     id_kamarier = fields.Many2one('restorant.kamarier', string="Kamarier_Id")
-
+    color = fields.Integer(string='Color Index',compute='_set_color',store=True)
     state = fields.Selection([
         ('perfunduar', 'Bosh'),
         ('krijuar', 'E Rezervuar'),
         ('pritje', 'E Zene'),
         ('servirur', 'Servirur')], string='Statusi', default="perfunduar")
-
+    
+    @api.one
+    @api.depends('state')
+    def _set_color(self):
+        if self.state == 'perfunduar':
+            self.color = 10
+        if self.state == 'pritje':
+            self.color = 9
+    
     @api.multi
     def liro(self):
         self.state = 'perfunduar'
