@@ -104,7 +104,7 @@ class Porosi(models.Model):
             if porosi.menu_ids:
                 for menu in porosi.menu_ids:
                     cmimi += menu.cmimi
-            self.cmimi_total = cmimi
+            porosi.cmimi_total = cmimi
 
 # class SasiPorosi(models.Model):
 #     _name = "restorant.sasiporosi"
