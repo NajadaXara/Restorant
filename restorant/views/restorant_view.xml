@@ -127,10 +127,12 @@
             <field name="model">restorant.tavolina</field>
             <field name="priority">10</field>
             <field name="arch" type="xml">
-                <kanban class="o_hr_employee_kanban">
+                <kanban class="oe_background_grey o_kanban_dashboard o_emphasize_colors">
+                    <field name="color"/>
+                    <field name="state"/>
                     <templates>
                         <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
+                        <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click o_has_icon">
                             <div class="oe_kanban_details">
                                 <div class="o_kanban_record_top">
                                     <div class="o_kanban_record_headings">
